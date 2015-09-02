@@ -1,0 +1,13 @@
+{
+  "name": "combinations",
+  "version": "0.1.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {},
+  "author": "iwasaki@cresc.com",
+  "license": "New BSD License",
+  "dependencies": {
+    "mithril": "^0.2.0",
+    "webpack": "^1.12.0"
+  }
+}
