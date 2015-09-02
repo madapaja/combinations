@@ -20,7 +20,10 @@
 
         vm.generate = function() {
           var combi = Combinations(vm.data.map(function(section) { return section().split('\n').filter(function(e) { return e.trim() !== ''}); }));
-          vm.combinations(combi.generate().map(function(combi) { return combi.join('\t'); }).join('\n'));
+
+          if (combi.length < 100000 || window.confirm("組み合わせ数が10万件以上となりますが、生成を続行しますか？\n件数：" + combi.length.toLocaleString())) {
+            vm.combinations(combi.generate().map(function(combi) { return combi.join('\t'); }).join('\n'));
+          }
 
           return false;
         };
@@ -45,7 +48,7 @@
       m('div.area', [
         combination.vm.data.map(function(data, index) {
           return m('section.item', [
-            m('textarea.pure-input-1', {onchange: m.withAttr('value', data), value: data() })
+            m('textarea.pure-input-1', { onchange: m.withAttr('value', data), value: data() })
           ])
         })
       ]),
@@ -56,8 +59,8 @@
         ' ',
         m('button.pure-button.pure-button-primary', { onclick: combination.vm.generate }, [m('i.fa.fa-check'), ' 生成'])
       ]),
-      m('h3', '全組み合わせ結果 / ' + (combination.vm.combinations() === '' ? 0 : combination.vm.combinations().split('\n').length) + '件'),
-      m('textarea.pure-input-1[readonly]', combination.vm.combinations() )
+      m('h3', '全組み合わせ結果 / ' + (combination.vm.combinations() === '' ? 0 : combination.vm.combinations().split('\n').length.toLocaleString()) + '件'),
+      m('textarea.pure-input-1[readonly]', { onclick: function(e){ e.target.focus(); e.target.select(); }, value: combination.vm.combinations()} )
     ]);
 
   };
