@@ -1,4 +1,16 @@
-(function() {
+(function(window, factory) {
+  if (typeof define === 'function' && define.amd) {
+    define(function() {
+      return factory(window);
+    });
+  } else if (typeof module === 'object' && typeof module.exports === 'object') {
+    module.exports = factory(window);
+  } else {
+    window.Combinations = factory(window);
+  }
+}(window, function(window) {
+  'use strict';
+
   function Combinations(data) {
     if (this === window) {
       return new Combinations(data);
@@ -34,5 +46,5 @@
     return combinations;
   };
 
-  module.exports = Combinations;
-})();
+  return Combinations;
+}));
