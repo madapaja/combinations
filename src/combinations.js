@@ -12,9 +12,6 @@
   'use strict';
 
   function Combinations(data) {
-    if (this === window) {
-      return new Combinations(data);
-    }
     this.setData(data);
   }
   Combinations.prototype.setData = function(data) {

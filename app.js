@@ -19,7 +19,7 @@
         };
 
         vm.generate = function() {
-          var combi = Combinations(vm.data.map(function(section) { return section().split('\n').filter(function(e) { return e.trim() !== ''}); }));
+          var combi = new Combinations(vm.data.map(function(section) { return section().split('\n').filter(function(e) { return e.trim() !== ''}); }));
 
           if (combi.length < 100000 || window.confirm("組み合わせ数が10万件以上となりますが、生成を続行しますか？\n件数：" + combi.length.toLocaleString())) {
             vm.combinations(combi.generate().map(function(combi) { return combi.join('\t'); }).join('\n'));
